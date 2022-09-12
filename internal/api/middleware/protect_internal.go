@@ -11,10 +11,8 @@ const (
 	InternalHeaderEnvVar = "X_INTERNAL_ACCESS"
 )
 
-var internalHeaderVal = os.Getenv(InternalHeaderEnvVar)
-
 func ProtectInternal(c *fiber.Ctx) error {
-	if c.Get(InternalHeader) != internalHeaderVal {
+	if c.Get(InternalHeader) != os.Getenv(InternalHeaderEnvVar) {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 			"status":  fiber.StatusUnauthorized,
 			"message": "Unauthorized",
