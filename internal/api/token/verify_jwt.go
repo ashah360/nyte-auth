@@ -20,7 +20,7 @@ func ValidateJWT(token string) (*AccessTokenPayload, error) {
 			return nil, cerror.ErrMalformedToken
 		}
 
-		return []byte(os.Getenv("NYTE_SECRET")), nil
+		return []byte(os.Getenv("JWT_SECRET")), nil
 	})
 	if err != nil {
 		return nil, cerror.ErrMalformedToken
