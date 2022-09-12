@@ -1,0 +1,12 @@
+kind: Certificate
+apiVersion: cert-manager.io/v1alpha2
+metadata:
+  name: auth-nytesoftware-com-cert
+  namespace: istio-system
+spec:
+  dnsNames:
+    - auth.nytesoftware.com
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+  secretName: auth-nytesoftware-com-tls
