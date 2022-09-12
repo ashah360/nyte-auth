@@ -1,0 +1,24 @@
+version: "3"
+services:
+  db:
+    image: "postgres:13"
+    container_name: "my_postgres"
+    environment:
+      POSTGRES_PASSWORD: "my_password"
+    ports:
+      - "54320:5432"
+    volumes:
+      - my_dbdata:/var/lib/postgresql/data
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+volumes:
+  my_dbdata:
+    driver: local
+  cache:
+    driver: local
